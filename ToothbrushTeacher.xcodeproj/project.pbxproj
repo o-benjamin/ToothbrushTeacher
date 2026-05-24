@@ -6,14 +6,110 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A56E5C2D2FC2E34A00C10DE7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57F527F2FC299950005438D /* WidgetKit.framework */; };
+		A56E5C2E2FC2E34A00C10DE7 /* WidgetKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A57F527F2FC299950005438D /* WidgetKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A56E5C302FC2E34B00C10DE7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57F52812FC299950005438D /* SwiftUI.framework */; };
+		A56E5C312FC2E34B00C10DE7 /* SwiftUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A57F52812FC299950005438D /* SwiftUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A57F52AB2FC2DC6C0005438D /* ToothbrushWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A57F527D2FC299950005438D /* ToothbrushWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A57F52A42FC2DBCD0005438D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A57F52632FC285AB0005438D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A57F527C2FC299950005438D;
+			remoteInfo = ToothbrushWidgetExtension;
+		};
+		A57F52AC2FC2DC6C0005438D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A57F52632FC285AB0005438D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A57F527C2FC299950005438D;
+			remoteInfo = ToothbrushWidgetExtension;
+		};
+		A57F52AF2FC2DC740005438D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A57F52632FC285AB0005438D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A57F527C2FC299950005438D;
+			remoteInfo = ToothbrushWidgetExtension;
+		};
+		A57F52B12FC2DC7D0005438D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A57F52632FC285AB0005438D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A57F527C2FC299950005438D;
+			remoteInfo = ToothbrushWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A56E5C2F2FC2E34A00C10DE7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A56E5C312FC2E34B00C10DE7 /* SwiftUI.framework in Embed Frameworks */,
+				A56E5C2E2FC2E34A00C10DE7 /* WidgetKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A57F52AE2FC2DC6C0005438D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A57F52AB2FC2DC6C0005438D /* ToothbrushWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A57F526B2FC285AB0005438D /* ToothbrushTeacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToothbrushTeacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A57F527D2FC299950005438D /* ToothbrushWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ToothbrushWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A57F527F2FC299950005438D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A57F52812FC299950005438D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A57F52922FC299960005438D /* Exceptions for "ToothbrushWidget" folder in "ToothbrushWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A57F527C2FC299950005438D /* ToothbrushWidgetExtension */;
+		};
+		A57F529D2FC29AC10005438D /* Exceptions for "ToothbrushTeacher" folder in "ToothbrushWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ToothbrushAttributes.swift,
+			);
+			target = A57F527C2FC299950005438D /* ToothbrushWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A57F526D2FC285AB0005438D /* ToothbrushTeacher */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A57F529D2FC29AC10005438D /* Exceptions for "ToothbrushTeacher" folder in "ToothbrushWidgetExtension" target */,
+			);
 			path = ToothbrushTeacher;
+			sourceTree = "<group>";
+		};
+		A57F52832FC299950005438D /* ToothbrushWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A57F52922FC299960005438D /* Exceptions for "ToothbrushWidget" folder in "ToothbrushWidgetExtension" target */,
+			);
+			path = ToothbrushWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +122,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A57F527A2FC299950005438D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A56E5C302FC2E34B00C10DE7 /* SwiftUI.framework in Frameworks */,
+				A56E5C2D2FC2E34A00C10DE7 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				A57F526D2FC285AB0005438D /* ToothbrushTeacher */,
+				A57F52832FC299950005438D /* ToothbrushWidget */,
+				A57F527E2FC299950005438D /* Frameworks */,
 				A57F526C2FC285AB0005438D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +148,18 @@
 			isa = PBXGroup;
 			children = (
 				A57F526B2FC285AB0005438D /* ToothbrushTeacher.app */,
+				A57F527D2FC299950005438D /* ToothbrushWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A57F527E2FC299950005438D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A57F527F2FC299950005438D /* WidgetKit.framework */,
+				A57F52812FC299950005438D /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +172,15 @@
 				A57F52672FC285AB0005438D /* Sources */,
 				A57F52682FC285AB0005438D /* Frameworks */,
 				A57F52692FC285AB0005438D /* Resources */,
+				A57F52AE2FC2DC6C0005438D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A57F52A52FC2DBCD0005438D /* PBXTargetDependency */,
+				A57F52AD2FC2DC6C0005438D /* PBXTargetDependency */,
+				A57F52B02FC2DC740005438D /* PBXTargetDependency */,
+				A57F52B22FC2DC7D0005438D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A57F526D2FC285AB0005438D /* ToothbrushTeacher */,
@@ -69,6 +191,29 @@
 			productName = ToothbrushTeacher;
 			productReference = A57F526B2FC285AB0005438D /* ToothbrushTeacher.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A57F527C2FC299950005438D /* ToothbrushWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A57F52932FC299960005438D /* Build configuration list for PBXNativeTarget "ToothbrushWidgetExtension" */;
+			buildPhases = (
+				A57F52792FC299950005438D /* Sources */,
+				A57F527A2FC299950005438D /* Frameworks */,
+				A57F527B2FC299950005438D /* Resources */,
+				A56E5C2F2FC2E34A00C10DE7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A57F52832FC299950005438D /* ToothbrushWidget */,
+			);
+			name = ToothbrushWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ToothbrushWidgetExtension;
+			productReference = A57F527D2FC299950005438D /* ToothbrushWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +226,9 @@
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					A57F526A2FC285AB0005438D = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					A57F527C2FC299950005438D = {
 						CreatedOnToolsVersion = 26.5;
 					};
 				};
@@ -100,12 +248,20 @@
 			projectRoot = "";
 			targets = (
 				A57F526A2FC285AB0005438D /* ToothbrushTeacher */,
+				A57F527C2FC299950005438D /* ToothbrushWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A57F52692FC285AB0005438D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A57F527B2FC299950005438D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +278,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A57F52792FC299950005438D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A57F52A52FC2DBCD0005438D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A57F527C2FC299950005438D /* ToothbrushWidgetExtension */;
+			targetProxy = A57F52A42FC2DBCD0005438D /* PBXContainerItemProxy */;
+		};
+		A57F52AD2FC2DC6C0005438D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A57F527C2FC299950005438D /* ToothbrushWidgetExtension */;
+			targetProxy = A57F52AC2FC2DC6C0005438D /* PBXContainerItemProxy */;
+		};
+		A57F52B02FC2DC740005438D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A57F527C2FC299950005438D /* ToothbrushWidgetExtension */;
+			targetProxy = A57F52AF2FC2DC740005438D /* PBXContainerItemProxy */;
+		};
+		A57F52B22FC2DC7D0005438D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A57F527C2FC299950005438D /* ToothbrushWidgetExtension */;
+			targetProxy = A57F52B12FC2DC7D0005438D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A57F52742FC285AC0005438D /* Debug */ = {
@@ -256,11 +442,13 @@
 				DEVELOPMENT_TEAM = K9HTUD3NY9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,11 +476,13 @@
 				DEVELOPMENT_TEAM = K9HTUD3NY9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +493,68 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A57F52942FC299960005438D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K9HTUD3NY9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToothbrushWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ToothbrushWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toothbrush.ToothbrushTeacher.ToothbrushWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A57F52952FC299960005438D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K9HTUD3NY9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToothbrushWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ToothbrushWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toothbrush.ToothbrushTeacher.ToothbrushWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -327,6 +579,15 @@
 			buildConfigurations = (
 				A57F52772FC285AC0005438D /* Debug */,
 				A57F52782FC285AC0005438D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A57F52932FC299960005438D /* Build configuration list for PBXNativeTarget "ToothbrushWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A57F52942FC299960005438D /* Debug */,
+				A57F52952FC299960005438D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,6 +8,9 @@ struct ToothbrushWidgetLiveActivity: Widget {
             VStack {
                 Text("\(context.state.displayLocation) をみがこう")
                     .font(.headline)
+                timerText(for: context.state, showsPrefix: true)
+                    .font(.title2.monospacedDigit())
+                    .foregroundColor(.orange)
             }
             .padding()
 
@@ -17,13 +20,17 @@ struct ToothbrushWidgetLiveActivity: Widget {
                     Text("🪥")
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    ProgressView(value: Double(context.state.timeRemaining), total: Double(context.attributes.totalDuration))
-                        .progressViewStyle(.circular)
+                    timerText(for: context.state)
+                        .font(.system(.body, design: .monospaced))
+                        .foregroundColor(.orange)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack(spacing: 8) {
                         Text("\(context.state.displayLocation) をみがき中")
                             .font(.title2)
+                        timerText(for: context.state, showsPrefix: true)
+                            .font(.title3.monospacedDigit())
+                            .foregroundColor(.orange)
                     }
                 }
             } compactLeading: {
@@ -31,12 +38,25 @@ struct ToothbrushWidgetLiveActivity: Widget {
                     .font(.body)
                     .bold()
             } compactTrailing: {
-                Text(String(format: "%02d", context.state.timeRemaining))
+                timerText(for: context.state)
                     .font(.system(.body, design: .monospaced))
                     .foregroundColor(.orange)
             } minimal: {
-                Text(String(context.state.timeRemaining))
+                timerText(for: context.state)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func timerText(for state: ToothbrushAttributes.ContentState, showsPrefix: Bool = false) -> some View {
+        if state.isPaused || state.currentStepDeadline == nil {
+            if showsPrefix {
+                Text("あと \(state.timeRemaining) 秒")
+            } else {
+                Text(String(format: "%02d", state.timeRemaining))
+            }
+        } else if let deadline = state.currentStepDeadline {
+            Text(deadline, style: .timer)
         }
     }
 }

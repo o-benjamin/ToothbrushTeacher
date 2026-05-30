@@ -43,7 +43,8 @@ class ToothbrushViewModel {
         let initialState = ToothbrushAttributes.ContentState(
             displayLocation: steps[currentStepIndex],
             timeRemaining: timeRemainingInStep,
-            isPaused: false
+            isPaused: false,
+            currentStepDeadline: Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
         )
         
         do {
@@ -95,20 +96,22 @@ class ToothbrushViewModel {
             if currentStepIndex < steps.count - 1 {
                 currentStepIndex += 1
                 timeRemainingInStep = 10
+                updateActivity()
             } else {
                 endTimer()
                 return
             }
         }
-        
-        updateActivity()
     }
     
     private func updateActivity() {
         let updatedState = ToothbrushAttributes.ContentState(
             displayLocation: steps[currentStepIndex],
             timeRemaining: timeRemainingInStep,
-            isPaused: isPaused
+            isPaused: isPaused,
+            currentStepDeadline: isPaused
+                ? nil
+                : Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
         )
         
         Task {

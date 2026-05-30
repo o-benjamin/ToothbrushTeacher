@@ -34,7 +34,7 @@ class ToothbrushViewModel {
         isPaused = false
         currentStepIndex = 0
         timeRemainingInStep = 10
-        currentStepDeadline = Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
+        currentStepDeadline = Date.now.addingTimeInterval(10)
         
         // App Group UserDefaults をリセット
         let defaults = UserDefaults(suiteName: appGroupID)
@@ -104,7 +104,7 @@ class ToothbrushViewModel {
             if currentStepIndex < steps.count - 1 {
                 currentStepIndex += 1
                 timeRemainingInStep = 10
-                currentStepDeadline = Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
+                currentStepDeadline = Date.now.addingTimeInterval(10)
                 updateActivity()
             } else {
                 endTimer()

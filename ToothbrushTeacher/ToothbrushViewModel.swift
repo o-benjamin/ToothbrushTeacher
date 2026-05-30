@@ -98,8 +98,6 @@ class ToothbrushViewModel {
             while !Task.isCancelled {
                 do {
                     try await Task.sleep(for: .seconds(1))
-                } catch is CancellationError {
-                    break
                 } catch {
                     break
                 }

@@ -93,7 +93,6 @@ class ToothbrushViewModel {
     }
     
     private func startTicking() {
-        timerTask?.cancel()
         timerTask = Task { [weak self] in
             while !Task.isCancelled {
                 do {
@@ -133,10 +132,10 @@ class ToothbrushViewModel {
             isPaused: isPaused,
             currentStepDeadline: currentStepDeadline
         )
-        let activity = activity
+        let activityToUpdate = activity
         
         Task {
-            await activity?.update(.init(state: updatedState, staleDate: nil))
+            await activityToUpdate?.update(.init(state: updatedState, staleDate: nil))
         }
     }
 
@@ -157,11 +156,11 @@ class ToothbrushViewModel {
             intentObserver = nil
         }
 
-        let activity = activity
+        let activityToEnd = activity
         self.activity = nil
         
         Task {
-            await activity?.end(activity?.content, dismissalPolicy: .immediate)
+            await activityToEnd?.end(activityToEnd?.content, dismissalPolicy: .immediate)
         }
         
         // ここでカレンダーに今日のスタンプを押す（ローカルDBやUserDefaultsへの保存）ロジックを入れます

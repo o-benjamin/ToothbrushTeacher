@@ -49,18 +49,16 @@ struct ToothbrushWidgetLiveActivity: Widget {
 
     @ViewBuilder
     private func timerText(for state: ToothbrushAttributes.ContentState, showsPrefix: Bool = false) -> some View {
+        let pausedText = showsPrefix
+            ? "あと \(state.timeRemaining) 秒"
+            : String(format: "%02d", state.timeRemaining)
+
         if state.isPaused {
-            if showsPrefix {
-                Text("あと \(state.timeRemaining) 秒")
-            } else {
-                Text(String(format: "%02d", state.timeRemaining))
-            }
+            Text(pausedText)
         } else if let deadline = state.currentStepDeadline {
             Text(deadline, style: .timer)
-        } else if showsPrefix {
-            Text("あと \(state.timeRemaining) 秒")
         } else {
-            Text(String(format: "%02d", state.timeRemaining))
+            Text(pausedText)
         }
     }
 }

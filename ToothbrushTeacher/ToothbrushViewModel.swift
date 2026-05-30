@@ -128,7 +128,7 @@ class ToothbrushViewModel {
 
     private func syncTimeRemainingWithDeadline() {
         guard let currentStepDeadline else { return }
-        timeRemainingInStep = max(0, Int(ceil(currentStepDeadline.timeIntervalSinceNow)))
+        timeRemainingInStep = max(0, Int(currentStepDeadline.timeIntervalSinceNow.rounded(.up)))
     }
     
     func endTimer() {

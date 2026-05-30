@@ -53,9 +53,7 @@ struct ToothbrushWidgetLiveActivity: Widget {
             ? "あと \(state.timeRemaining) 秒"
             : String(format: "%02d", state.timeRemaining)
 
-        if state.isPaused {
-            Text(pausedText)
-        } else if let deadline = state.currentStepDeadline {
+        if !state.isPaused, let deadline = state.currentStepDeadline {
             Text(deadline, style: .timer)
         } else {
             Text(pausedText)

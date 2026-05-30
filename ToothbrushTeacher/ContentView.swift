@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 struct ContentView: View {
     @State private var viewModel = ToothbrushViewModel()
     let columns = Array(repeating: GridItem(.flexible()), count: 7)

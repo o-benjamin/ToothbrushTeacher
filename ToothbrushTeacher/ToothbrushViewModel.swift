@@ -4,6 +4,7 @@ import SwiftUI
 
 private let appGroupID = "group.com.toothbrush.ToothbrushTeacher"
 
+@MainActor
 @Observable
 class ToothbrushViewModel {
     var isRunning = false
@@ -24,7 +25,7 @@ class ToothbrushViewModel {
     ]
     
     private var activity: Activity<ToothbrushAttributes>? = nil
-    private var timer: Timer? = nil
+    private var timerTask: Task<Void, Never>? = nil
     private var intentObserver: NSObjectProtocol? = nil
     private var currentStepDeadline: Date? = nil
     
@@ -61,7 +62,9 @@ class ToothbrushViewModel {
             object: defaults,
             queue: .main
         ) { [weak self] _ in
-            self?.handleIntentUpdates()
+            Task { @MainActor [weak self] in
+                self?.handleIntentUpdates()
+            }
         }
         
         startTicking()
@@ -90,8 +93,13 @@ class ToothbrushViewModel {
     }
     
     private func startTicking() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.tick()
+        timerTask = Task { @MainActor [weak self] in
+            while true {
+                try? await Task.sleep(for: .seconds(1))
+
+                guard !Task.isCancelled, let self else { break }
+                self.tick()
+            }
         }
     }
     
@@ -120,9 +128,10 @@ class ToothbrushViewModel {
             isPaused: isPaused,
             currentStepDeadline: currentStepDeadline
         )
+        let activityToUpdate = activity
         
         Task {
-            await activity?.update(.init(state: updatedState, staleDate: nil))
+            await activityToUpdate?.update(.init(state: updatedState, staleDate: nil))
         }
     }
 
@@ -132,8 +141,8 @@ class ToothbrushViewModel {
     }
     
     func endTimer() {
-        timer?.invalidate()
-        timer = nil
+        timerTask?.cancel()
+        timerTask = nil
         isRunning = false
         isPaused = false
         currentStepDeadline = nil
@@ -142,9 +151,13 @@ class ToothbrushViewModel {
             NotificationCenter.default.removeObserver(observer)
             intentObserver = nil
         }
+
+        let activityToEnd = activity
+        let contentToEnd = activityToEnd?.content
+        self.activity = nil
         
         Task {
-            await activity?.end(activity?.content, dismissalPolicy: .immediate)
+            await activityToEnd?.end(contentToEnd, dismissalPolicy: .immediate)
         }
         
         // ここでカレンダーに今日のスタンプを押す（ローカルDBやUserDefaultsへの保存）ロジックを入れます

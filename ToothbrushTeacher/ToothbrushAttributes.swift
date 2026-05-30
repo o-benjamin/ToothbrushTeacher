@@ -1,9 +1,9 @@
 import ActivityKit
 import Foundation
 
-struct ToothbrushAttributes: ActivityAttributes {
+struct ToothbrushAttributes: ActivityAttributes, Sendable {
     
-        public struct ContentState: Hashable, Codable {
+        public struct ContentState: Hashable, Codable, Sendable {
             var displayLocation: String
             var timeRemaining: Int
             var isPaused: Bool

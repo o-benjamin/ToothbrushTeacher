@@ -4,6 +4,7 @@ import SwiftUI
 
 private let appGroupID = "group.com.toothbrush.ToothbrushTeacher"
 
+@MainActor
 @Observable
 class ToothbrushViewModel {
     var isRunning = false
@@ -24,7 +25,7 @@ class ToothbrushViewModel {
     ]
     
     private var activity: Activity<ToothbrushAttributes>? = nil
-    private var timer: Timer? = nil
+    private var timerTask: Task<Void, Never>? = nil
     private var intentObserver: NSObjectProtocol? = nil
     private var currentStepDeadline: Date? = nil
     
@@ -61,7 +62,9 @@ class ToothbrushViewModel {
             object: defaults,
             queue: .main
         ) { [weak self] _ in
-            self?.handleIntentUpdates()
+            Task { @MainActor [weak self] in
+                self?.handleIntentUpdates()
+            }
         }
         
         startTicking()
@@ -90,8 +93,20 @@ class ToothbrushViewModel {
     }
     
     private func startTicking() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.tick()
+        timerTask?.cancel()
+        timerTask = Task { [weak self] in
+            while !Task.isCancelled {
+                do {
+                    try await Task.sleep(for: .seconds(1))
+                } catch is CancellationError {
+                    break
+                } catch {
+                    break
+                }
+
+                guard !Task.isCancelled, let self else { break }
+                self.tick()
+            }
         }
     }
     
@@ -120,6 +135,7 @@ class ToothbrushViewModel {
             isPaused: isPaused,
             currentStepDeadline: currentStepDeadline
         )
+        let activity = activity
         
         Task {
             await activity?.update(.init(state: updatedState, staleDate: nil))
@@ -132,8 +148,8 @@ class ToothbrushViewModel {
     }
     
     func endTimer() {
-        timer?.invalidate()
-        timer = nil
+        timerTask?.cancel()
+        timerTask = nil
         isRunning = false
         isPaused = false
         currentStepDeadline = nil
@@ -142,6 +158,9 @@ class ToothbrushViewModel {
             NotificationCenter.default.removeObserver(observer)
             intentObserver = nil
         }
+
+        let activity = activity
+        self.activity = nil
         
         Task {
             await activity?.end(activity?.content, dismissalPolicy: .immediate)

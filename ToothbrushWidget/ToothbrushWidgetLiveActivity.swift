@@ -57,10 +57,6 @@ struct ToothbrushWidgetLiveActivity: Widget {
             }
         } else if let deadline = state.currentStepDeadline {
             Text(deadline, style: .timer)
-        } else if showsPrefix {
-            Text("あと \(state.timeRemaining) 秒")
-        } else {
-            Text(String(format: "%02d", state.timeRemaining))
         }
     }
 }

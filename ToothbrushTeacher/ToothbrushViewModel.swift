@@ -95,15 +95,7 @@ class ToothbrushViewModel {
     private func startTicking() {
         timerTask = Task { @MainActor [weak self] in
             while true {
-                do {
-                    try await Task.sleep(for: .seconds(1))
-                } catch {
-                    if error is CancellationError {
-                        break
-                    }
-                    assertionFailure("Unexpected timer task error: \(error)")
-                    break
-                }
+                try? await Task.sleep(for: .seconds(1))
 
                 guard !Task.isCancelled, let self else { break }
                 self.tick()

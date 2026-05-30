@@ -26,6 +26,7 @@ class ToothbrushViewModel {
     private var activity: Activity<ToothbrushAttributes>? = nil
     private var timer: Timer? = nil
     private var intentObserver: NSObjectProtocol? = nil
+    private var currentStepDeadline: Date? = nil
     
     func startTimer() {
         guard !isRunning else { return }
@@ -33,6 +34,7 @@ class ToothbrushViewModel {
         isPaused = false
         currentStepIndex = 0
         timeRemainingInStep = 10
+        currentStepDeadline = Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
         
         // App Group UserDefaults をリセット
         let defaults = UserDefaults(suiteName: appGroupID)
@@ -44,7 +46,7 @@ class ToothbrushViewModel {
             displayLocation: steps[currentStepIndex],
             timeRemaining: timeRemainingInStep,
             isPaused: false,
-            currentStepDeadline: Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
+            currentStepDeadline: currentStepDeadline
         )
         
         do {
@@ -76,6 +78,12 @@ class ToothbrushViewModel {
         
         let newPaused = defaults?.bool(forKey: "isPaused") ?? false
         if newPaused != isPaused {
+            if newPaused {
+                syncTimeRemainingWithDeadline()
+                currentStepDeadline = nil
+            } else {
+                currentStepDeadline = Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
+            }
             isPaused = newPaused
             updateActivity()
         }
@@ -96,6 +104,7 @@ class ToothbrushViewModel {
             if currentStepIndex < steps.count - 1 {
                 currentStepIndex += 1
                 timeRemainingInStep = 10
+                currentStepDeadline = Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
                 updateActivity()
             } else {
                 endTimer()
@@ -109,14 +118,17 @@ class ToothbrushViewModel {
             displayLocation: steps[currentStepIndex],
             timeRemaining: timeRemainingInStep,
             isPaused: isPaused,
-            currentStepDeadline: isPaused
-                ? nil
-                : Date.now.addingTimeInterval(TimeInterval(timeRemainingInStep))
+            currentStepDeadline: currentStepDeadline
         )
         
         Task {
             await activity?.update(.init(state: updatedState, staleDate: nil))
         }
+    }
+
+    private func syncTimeRemainingWithDeadline() {
+        guard let currentStepDeadline else { return }
+        timeRemainingInStep = max(1, Int(ceil(currentStepDeadline.timeIntervalSinceNow)))
     }
     
     func endTimer() {
@@ -124,6 +136,7 @@ class ToothbrushViewModel {
         timer = nil
         isRunning = false
         isPaused = false
+        currentStepDeadline = nil
         
         if let observer = intentObserver {
             NotificationCenter.default.removeObserver(observer)

@@ -153,10 +153,11 @@ class ToothbrushViewModel {
         }
 
         let activityToEnd = activity
+        let contentToEnd = activityToEnd?.content
         self.activity = nil
         
         Task {
-            await activityToEnd?.end(activityToEnd?.content, dismissalPolicy: .immediate)
+            await activityToEnd?.end(contentToEnd, dismissalPolicy: .immediate)
         }
         
         // ここでカレンダーに今日のスタンプを押す（ローカルDBやUserDefaultsへの保存）ロジックを入れます
